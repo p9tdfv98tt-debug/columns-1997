@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>COLUMNS 1997</title>
+    <!-- Google Fonts for futuristic arcade typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css?v=1997">
+    
+    <!-- PWA Settings -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#0b0518">
+    <link rel="apple-touch-icon" href="icon-192.png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Columns 1997">
+</head>
+<body>
+    <!-- Retro Sega Title Screen Overlay -->
+    <div id="title-screen-overlay" class="title-screen-overlay active">
+        <div class="scanlines"></div>
+        <div class="glare"></div>
+        <div class="title-content-wrapper">
+            <!-- Flying Angels -->
+            <img id="title-angel-left" class="title-angel title-angel-left" src="columns_angel_sprite.png" alt="Angel Left">
+            <img id="title-angel-right" class="title-angel title-angel-right" src="columns_angel_sprite.png" alt="Angel Right">
+
+            <div class="title-logo-container">
+                <h1 class="title-logo-text">COLUMNS</h1>
+                <div class="title-logo-year">1997</div>
+            </div>
+            
+            <div class="title-prompt-container">
+                <p class="title-prompt-text">PRESS ENTER TO START</p>
+            </div>
+            
+            <div class="title-copyright">
+                <p>© SEGA 1990 / SEGA 1997</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="game-container">
+        <!-- Header -->
+        <header class="game-header">
+            <h1 class="glow-title">COLUMNS <span class="year-badge">1997</span></h1>
+            <p class="subtitle">A RETRO-MODERN ARCADE EXPERIENCE</p>
+        </header>
+
+        <!-- Main Arcade Cabinet Screen -->
+        <div class="arcade-cabinet">
+            <!-- Left Info Panel -->
+            <div class="panel left-panel">
+                <div class="panel-section">
+                    <h2>LEVEL</h2>
+                    <div class="digital-display" id="level-display">1</div>
+                </div>
+                <div class="panel-section">
+                    <h2>CLEARS</h2>
+                    <div class="digital-display" id="clears-display">0</div>
+                </div>
+                <div class="panel-section controls-guide">
+                    <h3>CONTROLS</h3>
+                    <ul>
+                        <li><span>← →</span> Move</li>
+                        <li><span>↑ / SPACE</span> Cycle</li>
+                        <li><span>↓</span> Soft Drop</li>
+                        <li><span>ENTER</span> Hard Drop</li>
+                        <li><span>P</span> Pause</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Game Board with Sega-style pillars -->
+            <div class="board-wrapper">
+                <div class="pillar pillar-left">
+                    <div class="pillar-cap"></div>
+                    <div class="pillar-shaft"></div>
+                    <div class="pillar-base"></div>
+                </div>
+
+                <div class="board-screen">
+                    <!-- Overlay Screens -->
+                    <div id="start-screen" class="overlay-screen">
+                        <div class="overlay-content">
+                            <h2 class="animate-pulse">PRESS START</h2>
+                            <p class="desc">Align 3 or more matching gems horizontally, vertically, or diagonally.</p>
+                            <button id="start-btn" class="neon-btn">START GAME</button>
+                        </div>
+                    </div>
+
+                    <div id="pause-screen" class="overlay-screen">
+                        <div class="overlay-content">
+                            <h2>PAUSED</h2>
+                            <button id="resume-btn" class="neon-btn">RESUME</button>
+                        </div>
+                    </div>
+
+                    <div id="game-over-screen" class="overlay-screen">
+                        <div class="overlay-content">
+                            <h2 class="game-over-title">GAME OVER</h2>
+                            <div class="score-summary">
+                                <p>FINAL SCORE</p>
+                                <div class="digital-display large" id="final-score-display">000000</div>
+                            </div>
+                            <button id="restart-btn" class="neon-btn">PLAY AGAIN</button>
+                        </div>
+                    </div>
+
+                    <!-- The Game Canvas -->
+                    <canvas id="game-canvas" width="300" height="650"></canvas>
+                </div>
+
+                <div class="pillar pillar-right">
+                    <div class="pillar-cap"></div>
+                    <div class="pillar-shaft"></div>
+                    <div class="pillar-base"></div>
+                </div>
+            </div>
+
+            <!-- Right Info Panel -->
+            <div class="panel right-panel">
+                <div class="panel-section next-section">
+                    <h2>NEXT</h2>
+                    <div class="next-preview-box">
+                        <canvas id="next-canvas" width="60" height="150"></canvas>
+                    </div>
+                </div>
+                <div class="panel-section">
+                    <h2>SCORE</h2>
+                    <div class="digital-display" id="score-display">000000</div>
+                </div>
+                <div class="panel-section">
+                    <h2>HIGH SCORE</h2>
+                    <div class="digital-display" id="high-score-display">000000</div>
+                </div>
+                
+                <div class="audio-controls">
+                    <button id="music-btn" class="icon-btn muted" title="Toggle Synthwave Music">
+                        <span class="icon">🎵</span> Music: <span id="music-status">OFF</span>
+                    </button>
+                    <button id="sfx-btn" class="icon-btn" title="Toggle Sound Effects">
+                        <span class="icon">🔊</span> SFX: <span id="sfx-status">ON</span>
+                    </button>
+                    <button id="pause-btn-sidebar" class="icon-btn" title="Pause Game">
+                        <span class="icon">⏸️</span> Pause
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Combo Notification Overlay -->
+        <div id="combo-popup" class="combo-popup">
+            <span class="combo-count">2x</span> COMBO!
+        </div>
+
+        <!-- Virtual Gamepad for Touch/Mobile Devices -->
+        <div class="virtual-gamepad">
+            <div class="dpad">
+                <button id="btn-left" class="gamepad-btn arrow-btn">←</button>
+                <div class="dpad-center"></div>
+                <button id="btn-right" class="gamepad-btn arrow-btn">→</button>
+            </div>
+            <div class="action-buttons">
+                <button id="btn-cycle" class="gamepad-btn action-btn cycle-btn">CYCLE</button>
+                <button id="btn-down" class="gamepad-btn action-btn drop-btn">DROP</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="audio.js?v=1997"></script>
+    <script src="particles.js?v=1997"></script>
+    <script src="game.js?v=1997"></script>
+</body>
+</html>

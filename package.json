@@ -1,0 +1,12 @@
+{
+  "name": "columns-1997",
+  "version": "1.0.0",
+  "description": "A retro-modern Sega Columns clone built with HTML5 Canvas, Web Audio API, and CSS.",
+  "scripts": {
+    "dev": "vite",
+    "build": "mkdir -p dist && cp index.html styles.css audio.js particles.js game.js sw.js manifest.json icon-192.png icon-512.png columns_title_bg_no_angels.png columns_angel_sprite.png dist/"
+  },
+  "devDependencies": {
+    "vite": "^5.2.0"
+  }
+}
